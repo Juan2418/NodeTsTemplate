@@ -5,4 +5,3 @@ export const getHelloWorld = async (req: Request, res: Response) => {
 };
 
 export default {getHelloWorld};
-
