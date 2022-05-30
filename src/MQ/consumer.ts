@@ -1,9 +1,9 @@
-import MQSubscriber from './amqp_subscriber';
+import RabbitMQSubscriber from './amqp_subscriber';
 import * as dotenv from 'dotenv';
 
 (async () => {
   dotenv.config();
-  const subscriber = new MQSubscriber();
+  const subscriber = new RabbitMQSubscriber();
   await subscriber.connect();
   subscriber.subscribe((message) => {
     if (message) {

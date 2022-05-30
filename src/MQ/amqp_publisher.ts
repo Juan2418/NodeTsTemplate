@@ -1,14 +1,15 @@
 import amqp from 'amqplib';
 import { connect } from 'amqplib';
+import MQPublisher from 'MQ/types/MQPublisher';
 
 const mq_url = process.env.MQ_URL ?? 'amqp://localhost';
 
-export default class MQPublisher {
+export default class RabbitMQPublisher implements MQPublisher {
   private connection: amqp.Connection | undefined;
-  private channel: amqp.Channel | undefined;
+  protected channel: amqp.Channel | undefined;
 
   private mq_url = process.env.MQ_URL ?? 'amqp://localhost';
-  private mq_queue = process.env.MQ_QUEUE ?? 'default';
+  protected mq_queue = process.env.MQ_QUEUE ?? 'default';
 
   constructor() {}
 

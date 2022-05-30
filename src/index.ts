@@ -5,7 +5,7 @@ import { IVoteService } from './serviceTypes/IVoteService';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import VoteController from './controllers/VoteController';
+import VoteController from 'controllers/VoteController';
 
 dotenv.config();
 

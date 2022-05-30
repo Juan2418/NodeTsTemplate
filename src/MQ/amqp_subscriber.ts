@@ -1,15 +1,16 @@
 import amqp, { Message } from 'amqplib';
 import { connect } from 'amqplib';
+import MQSubscriber from 'MQ/types/MQSubscriber';
 
-const mq_url = process.env.MQ_URL ?? 'amqp://localhost';
-
-export default class MQSubscriber {
+export default class RabbitMQSubscriber implements MQSubscriber<Message> {
   private connection: amqp.Connection | undefined;
   private channel: amqp.Channel | undefined;
   private mq_url = process.env.MQ_URL ?? 'amqp://localhost';
   private mq_queue = process.env.MQ_QUEUE ?? 'default';
 
-  constructor() {}
+  constructor(queueName?: string) {
+    if (queueName) this.mq_queue = queueName;
+  }
 
   public async connect() {
     this.connection = await connect(this.mq_url);
